@@ -23,19 +23,22 @@
     .game{
         padding: 0;
         margin: 0;
-        width: 100%;
+        width:100%;
+        max-width: 500px;
     }
     .head{
         background-color: black;
         color: aliceblue;
         width:100%;
+        max-width: 500px;
         display: flex;
         justify-content: center;
         padding: 1rem;
-        font-size: 4rem;
+        font-size: 2rem;
     }
     .message,.score{
         width:100%;
+        max-width: 500px;
         display: flex;
         justify-content: center;
         font-size: 3rem;
@@ -48,16 +51,17 @@
     }
     .hero{
         width:100%;
-        margin-top: 30px;
+        max-width: 500px;
+        margin-top: 10px;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
     }
     #player_rock,#player_paper,#player_scissor{
         width: 120px;
         height: 120px;
         border: 1px solid black;
         border-radius: 50%;
-        margin: 5px;
+        margin: 2px;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -77,7 +81,7 @@
         height: 120px;
         border: 1px solid black;
         border-radius: 50%;
-        margin: 5px;
+        margin: 2px;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -122,6 +126,9 @@
         color: white;
         border-radius: 5px;
     }
+    h1{
+        text-align: center;
+    }
 </style>
 <body>
     <div class="game">
@@ -130,6 +137,7 @@
         <div class="score">You||PC</div>
         <div class="hero">
             <div class="player">
+                <h1>YOU</h1>
                 <button id="player_rock" class="moves" value="rock"></button>
                 <button id="player_paper" class="moves" value="paper"></button>
                 <button id="player_scissor" class="moves" value="scissor"></button>
@@ -139,6 +147,7 @@
             <div class="pc_display"></div>
             </div>
             <div class="pc">
+                <h1>PC</h1>
                 <button id="pc_rock"></button>
                 <button id="pc_paper"></button>
                 <button id="pc_scissor"></button>
