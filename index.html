@@ -24,21 +24,18 @@
         padding: 0;
         margin: 0;
         width:100%;
-        max-width: 500px;
     }
     .head{
         background-color: black;
         color: aliceblue;
         width:100%;
-        max-width: 500px;
         display: flex;
         justify-content: center;
         padding: 1rem;
-        font-size: 2rem;
+        font-size: 4rem;
     }
     .message,.score{
         width:100%;
-        max-width: 500px;
         display: flex;
         justify-content: center;
         font-size: 3rem;
@@ -51,10 +48,9 @@
     }
     .hero{
         width:100%;
-        max-width: 500px;
         margin-top: 10px;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
     }
     #player_rock,#player_paper,#player_scissor{
         width: 120px;
@@ -129,6 +125,64 @@
     h1{
         text-align: center;
     }
+    /* Add this to the existing CSS */
+
+/* For mobile devices (max-width: 480px) */
+@media only screen and (max-width: 480px) {
+  .game {
+    flex-direction: column;
+    align-items: center;
+  }
+  .head{
+    font-size: 2rem;
+  }
+  .hero {
+    flex-direction: column;
+    align-items: center;
+  }
+  .player, .pc {
+    margin-bottom: 20px;
+  }
+  .middle {
+    flex-direction: column;
+    align-items: center;
+  }
+  .player_display, .pc_display {
+    width: 180px;
+    height: 180px;
+  }
+  #player_rock, #player_paper, #player_scissor, #pc_rock, #pc_paper, #pc_scissor {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* For tablet devices (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  .game {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero {
+    flex-direction: column;
+    align-items: center;
+  }
+  .player, .pc {
+    margin-bottom: 20px;
+  }
+  .middle {
+    flex-direction: column;
+    align-items: center;
+  }
+  .player_display, .pc_display {
+    width: 220px;
+    height: 220px;
+  }
+  #player_rock, #player_paper, #player_scissor, #pc_rock, #pc_paper, #pc_scissor {
+    width: 110px;
+    height: 110px;
+  }
+}
 </style>
 <body>
     <div class="game">
