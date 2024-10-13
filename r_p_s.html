@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock_Paper_Scissor</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: cursive;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background-color: rgb(198, 198, 234);
+    }
+    .game{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+    .head{
+        background-color: black;
+        color: aliceblue;
+        width:100%;
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+        font-size: 4rem;
+    }
+    .message,.score{
+        width:100%;
+        display: flex;
+        justify-content: center;
+        font-size: 3rem;
+    }
+    .score{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .message{
+        color: rgb(4, 10, 88);
+    }
+    .hero{
+        width:100%;
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+    #player_rock,#player_paper,#player_scissor{
+        width: 120px;
+        height: 120px;
+        border: 1px solid black;
+        border-radius: 50%;
+        margin: 5px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        transition: transform 0.3s  ease; 
+    }
+    #player_rock:hover{
+        transform: scale(1.1);
+    }
+    #player_paper:hover{
+        transform: scale(1.1);
+    }
+    #player_scissor:hover{
+        transform: scale(1.1);
+    }
+    #pc_rock,#pc_paper,#pc_scissor{
+        width: 120px;
+        height: 120px;
+        border: 1px solid black;
+        border-radius: 50%;
+        margin: 5px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    #player_rock,#pc_rock{
+        background-image: url("rock.png");
+    }
+    #player_paper,#pc_paper{
+        background-image: url("paper.png");
+    }
+    #player_scissor,#pc_scissor{
+        background-image: url("scissor.png");
+    }
+    .middle{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .player_display,.pc_display{
+        width: 240px;
+        height: 240px;
+        /* border: 1px solid black; */
+        border-radius: 50%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .player,.pc{
+        display: flex;
+        flex-direction: column;
+    }
+    .reset{
+        display: flex;
+        justify-content: center;
+    }
+    .reset_button{
+        padding: 1rem;
+        font-family: Arial, Helvetica, sans-serifont;
+        border:none;
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+    }
+</style>
+<body>
+    <div class="game">
+        <div class="head">Rock(🪨)_Paper(📃)_Scissor(✂️)</div>
+        <div class="message">Start Playing</div>
+        <div class="score">You||PC</div>
+        <div class="hero">
+            <div class="player">
+                <button id="player_rock" class="moves" value="rock"></button>
+                <button id="player_paper" class="moves" value="paper"></button>
+                <button id="player_scissor" class="moves" value="scissor"></button>
+            </div>
+            <div class="middle">
+            <div class="player_display"></div>
+            <div class="pc_display"></div>
+            </div>
+            <div class="pc">
+                <button id="pc_rock"></button>
+                <button id="pc_paper"></button>
+                <button id="pc_scissor"></button>
+            </div>
+        </div>
+        <div class="reset"><button class="reset_button">Reset</button></div>
+    </div>
+    <script>
+        let youscore = 0;
+        let pcscore = 0;
+        let pc = ['rock','paper','scissor'];
+        let moves = document.querySelectorAll('.moves');
+        let player_display = document.querySelector('.player_display')
+        let message = document.querySelector('.message');
+        let score = document.querySelector('.score');
+        let reset = document.querySelector('.reset_button');
+        moves.forEach((n)=>{
+          n.addEventListener('click',()=>{
+            if(n.value === 'rock'){
+            player_display.style.backgroundImage = "url('rock.png')";
+          }
+          else if(n.value === 'paper'){
+            player_display.style.backgroundImage = "url('paper.png')";
+          }
+          else if(n.value === 'scissor'){
+            player_display.style.backgroundImage = "url('scissor.png')";
+          }
+
+          let pc_move = pc_move_generate();
+
+          if(n.value === pc_move){
+            message.innerText = 'It Is A Draw!'
+            message.style.backgroundColor = 'Yellow';
+            score.innerText = `You ${youscore} || PC ${pcscore}`
+          }
+          else if(n.value === 'rock' && pc_move === 'paper'){
+            message.innerText = 'PC Wins The round'
+            message.style.backgroundColor = 'red';
+            pcscore++;
+            score.innerText = `You ${youscore} || PC ${pcscore}`
+          }
+          else if(n.value === 'rock' && pc_move === 'scissor'){
+            message.innerText = 'You Win The round'
+            message.style.backgroundColor = 'green';
+            youscore++;
+            score.innerText = `You ${youscore} || PC ${pcscore}`
+          }
+          else if(n.value === 'paper' && pc_move === 'rock'){
+            message.innerText = 'You Win The round'
+            message.style.backgroundColor = 'green';
+            youscore++;
+            score.innerText = `You ${youscore} || PC ${pcscore}`
+          }
+          else if(n.value === 'paper' && pc_move === 'scissor'){
+            message.innerText = 'PC Wins The round'
+            message.style.backgroundColor = 'red';
+            pcscore++;
+            score.innerText = `You ${youscore} || PC ${pcscore}`
+          }
+          else if(n.value === 'scissor' && pc_move === 'rock'){
+            message.innerText = 'PC Wins The round'
+            message.style.backgroundColor = 'red';
+            pcscore++;
+            score.innerText = `You ${youscore} || PC ${pcscore}`
+          }
+          else if(n.value === 'scissor' && pc_move === 'paper'){
+            message.innerText = 'You Win The round'
+            message.style.backgroundColor = 'green';
+            youscore++;
+            score.innerText = `You ${youscore} || PC ${pcscore}`
+          }
+         });
+        });
+
+         function pc_move_generate(){
+            let r = Math.floor(Math.random() * 3);
+            console.log(r);
+            let pc_display = document.querySelector('.pc_display')
+            pc_display.style.backgroundImage = `url(${pc[r]+'.png'})`;
+            return pc[r];
+         }
+ 
+       reset.addEventListener('click',()=>{
+             youscore = 0;
+             pcscore = 0;
+             window.location.reload();
+       });
+
+    </script>
+</body>
+</html>
